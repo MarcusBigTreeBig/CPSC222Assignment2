@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 public class MultiFileSemaphore {
     private ThreadQueue q;
-    private ArrayList<PrintWriter> files;
-    public MultiFileSemaphore (ArrayList<PrintWriter> files) {
+    private FileStack files;
+    public MultiFileSemaphore (FileStack files) {
         q = new ThreadQueue();
         this.files = files;
     }
@@ -35,6 +35,30 @@ public class MultiFileSemaphore {
             private ThreadNode next;
             private ThreadNode previous;
             private Thread thread;
+        }
+    }
+    private class FileStack {
+
+        private FileNode top;
+
+        public void push (PrintWriter file) {
+            FileNode f = new FileNode();
+            f.file = file;
+            if (top != null) {
+                f.next = top;
+            }
+            top = f;
+        }
+
+        public PrintWriter pop () {
+            FileNode f = top;
+            top = top.next;
+            return f.file;
+        }
+
+        private class FileNode {
+            private FileNode next;
+            private PrintWriter file;
         }
     }
 }
