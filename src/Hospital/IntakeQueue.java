@@ -3,13 +3,11 @@ package Hospital;
 import java.util.Comparator;
 
 public class IntakeQueue {
-    private IntakeQueueType type;
     private IntakeNode front;
     private IntakeNode rear;
-    public IntakeQueue (IntakeQueueType type) {
+    public IntakeQueue () {
         front = null;
         rear = null;
-        this.type = type;
     }
 
     public Intake dequeue () {
@@ -56,6 +54,7 @@ public class IntakeQueue {
         toAdd.back = current.back.next;
         current.back.next = toAdd;
         current.back = toAdd;
+        System.out.println();
     }
 
     private class IntakeNode{

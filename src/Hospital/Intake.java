@@ -6,7 +6,11 @@ public class Intake {
     public Intake (IntakeType type, int severity) {
         this.type = type;
         this.severity = severity;
-        System.out.println("New Intake Created\n Type: " + type + "\nSeverity: " + severity + "\n");
+        System.out.println("New Intake Created\n" + toString());
+    }
+    @Override
+    public String toString () {
+        return "Type: " + type + "\nSeverity: " + severity + "\n";
     }
 
     public IntakeType getType () {
