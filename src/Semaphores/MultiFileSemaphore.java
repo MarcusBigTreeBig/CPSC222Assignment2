@@ -1,17 +1,29 @@
 package Semaphores;
 
-import java.io.File;
-import java.io.PrintWriter;
-import java.util.ArrayList;
+import java.io.FileWriter;
 
 public class MultiFileSemaphore {
     private ThreadQueue q;
     private FileStack files;
-    public MultiFileSemaphore (FileStack files) {
+    public MultiFileSemaphore () {
         q = new ThreadQueue();
-        this.files = files;
+        files = new FileStack();
     }
 
+    public synchronized void giveFile (FileWriter file) {
+        files.push(file);
+    }
+    public synchronized FileWriter takeFile () {
+        while (files.top == null) {
+            try {
+                wait();
+            }
+            catch (InterruptedException e) {
+
+            }
+        }
+        return files.pop();
+    }
 
     private class ThreadQueue {
 
@@ -20,11 +32,19 @@ public class MultiFileSemaphore {
 
         public void enqueue (Thread t) {
             ThreadNode n = new ThreadNode();
-            rear.previous = n;
+            if (rear != null) {
+                rear.previous = n;
+            }
             n.next = rear;
             rear = n;
+            if (front == null) {
+                front = n;
+            }
         }
         public Thread dequeue () {
+            if (front == null) {
+                return null;
+            }
             ThreadNode n = front;
             front = front.previous;
             front.next = null;
@@ -41,7 +61,7 @@ public class MultiFileSemaphore {
 
         private FileNode top;
 
-        public void push (PrintWriter file) {
+        public void push (FileWriter file) {
             FileNode f = new FileNode();
             f.file = file;
             if (top != null) {
@@ -50,7 +70,7 @@ public class MultiFileSemaphore {
             top = f;
         }
 
-        public PrintWriter pop () {
+        public FileWriter pop () {
             FileNode f = top;
             top = top.next;
             return f.file;
@@ -58,7 +78,7 @@ public class MultiFileSemaphore {
 
         private class FileNode {
             private FileNode next;
-            private PrintWriter file;
+            private FileWriter file;
         }
     }
 }
