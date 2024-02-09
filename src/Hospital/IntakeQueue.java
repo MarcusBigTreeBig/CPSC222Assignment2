@@ -10,7 +10,7 @@ public class IntakeQueue {
         rear = null;
     }
 
-    public Intake dequeue () {
+    public synchronized Intake dequeue () {
         if (front == null) {
             return null;
         }
@@ -19,7 +19,7 @@ public class IntakeQueue {
         return temp.intake;
     }
 
-    public void addIntake (Intake in) {
+    public synchronized void addIntake (Intake in) {
         IntakeNode current = rear;
         IntakeNode toAdd = new IntakeNode();
         toAdd.intake = in;
