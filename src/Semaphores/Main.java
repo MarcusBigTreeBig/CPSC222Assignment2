@@ -1,8 +1,11 @@
 package Semaphores;
 
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+
+/**
+ * Creates 15 threads that want to write results to 5 files in a semaphore
+ */
 
 public class Main {
     public static void main (String[] args) throws IOException {

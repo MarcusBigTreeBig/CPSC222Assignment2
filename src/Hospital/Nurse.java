@@ -1,12 +1,30 @@
 package Hospital;
 
+/**
+ * Nurse for the hospital simulation
+ * Has a queue of intakes that have not yet been processed
+ * Sends the intakes to doctors in the hospital
+ */
+
 public class Nurse extends Thread{
     private IntakeQueue queue;
     private Hospital hospital;
+
+    /**
+     * Creates a nurse
+     *
+     * @param queue for the intakes that have not yet been processed.
+     * @param hospital hospital it's part of, used to access the doctors
+     */
     public Nurse (IntakeQueue queue, Hospital hospital) {
         this.queue = queue;
         this.hospital = hospital;
     }
+
+    /**
+     *
+     * @param intake adds to the Nurse's queue
+     */
     public synchronized void addToQueue (Intake intake) {
         queue.addIntake(intake);
     }
@@ -17,9 +35,9 @@ public class Nurse extends Thread{
         boolean doctorIsEmergency = false;
         while (true) {
             next = queue.dequeue();
-            if (next != null) {
-                while (doctor == null) {
-                    if (next.getType() == IntakeType.Emergency && hospital.emergencyDoctorAvailable()) {
+            if (next != null) {//while there is no intake to process
+                while (doctor == null) {//need an available doctor
+                    if (next.getType() == IntakeType.Emergency && hospital.emergencyDoctorAvailable()) {//one of the doctors is exclusively for emergency
                         doctor = hospital.takeEmergencyDoctor();
                         doctorIsEmergency = true;
                     } else if (hospital.generalDoctorAvailable()) {

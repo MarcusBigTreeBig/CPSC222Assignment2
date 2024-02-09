@@ -2,6 +2,10 @@ package ThreadNumbers;
 
 import java.util.Random;
 
+/**
+ * Complex thread that contains a large int array
+ * When ran, infinitely increments a random value of the array
+ */
 public class ComplexThread extends Thread{
     private int[] arr;
     public ComplexThread () {

@@ -2,6 +2,10 @@ package Hospital;
 
 import java.util.Random;
 
+/**
+ * Starts the hospital simulation
+ */
+
 public class Main {
     public static void main (String[] args) {
         Hospital hospital = new Hospital(1, 2);
@@ -10,10 +14,10 @@ public class Main {
         IntakeType type = null;
         Intake next;
         int numberOfIntakes = 25;
-        Intake[] intakes = new Intake[numberOfIntakes];
+        //randomly create intakes
         for (int i = 0; i < numberOfIntakes; i++) {
             sendToEmergency  = rand.nextBoolean();
-            switch (rand.nextInt(3)) {
+            switch (rand.nextInt(3)) {//randomly picking the type of the intake
                 case 0:
                     type = IntakeType.Emergency;
                     break;
