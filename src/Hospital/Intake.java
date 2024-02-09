@@ -3,14 +3,16 @@ package Hospital;
 public class Intake {
     private IntakeType type;
     private int severity;
-    public Intake (IntakeType type, int severity) {
+    private int intakeID;
+    public Intake (IntakeType type, int severity, int intakeID) {
         this.type = type;
         this.severity = severity;
         System.out.println("New Intake Created\n" + toString());
+        this.intakeID = intakeID;
     }
     @Override
-    public String toString () {
-        return "Type: " + type + "\nSeverity: " + severity + "\n";
+    public synchronized String toString () {
+        return "Intake ID: " + intakeID + "\nType: " + type + "\nSeverity: " + severity + "\n";
     }
 
     public IntakeType getType () {

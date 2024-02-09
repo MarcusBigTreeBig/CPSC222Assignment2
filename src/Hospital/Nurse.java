@@ -17,22 +17,25 @@ public class Nurse extends Thread{
         boolean doctorIsEmergency = false;
         while (true) {
             next = queue.dequeue();
-            while (doctor == null) {
-                if (next.getType() == IntakeType.Emergency && hospital.emergencyDoctorAvailable()) {
-                    doctor = hospital.takeEmergencyDoctor();
-                    doctorIsEmergency = true;
-                }else if (hospital.generalDoctorAvailable()) {
-                    doctor = hospital.takeGeneralDoctor();
-                    doctorIsEmergency = false;
+            if (next != null) {
+                while (doctor == null) {
+                    if (next.getType() == IntakeType.Emergency && hospital.emergencyDoctorAvailable()) {
+                        doctor = hospital.takeEmergencyDoctor();
+                        doctorIsEmergency = true;
+                    } else if (hospital.generalDoctorAvailable()) {
+                        doctor = hospital.takeGeneralDoctor();
+                        doctorIsEmergency = false;
+                    }
                 }
+                doctor.addToQueue(next);
+                System.out.println(next + "Processed by nurse\n");
+                if (doctorIsEmergency) {
+                    hospital.giveEmergencyDoctor(doctor);
+                } else {
+                    hospital.giveGeneralDoctor(doctor);
+                }
+                doctor = null;
             }
-            doctor.addToQueue(next);
-            if (doctorIsEmergency) {
-                hospital.giveEmergencyDoctor(doctor);
-            }else{
-                hospital.giveGeneralDoctor(doctor);
-            }
-            doctor = null;
         }
     }
 }

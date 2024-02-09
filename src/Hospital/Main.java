@@ -22,7 +22,7 @@ public class Main {
                     type = IntakeType.General;
                     break;
             }
-            next = new Intake(type, rand.nextInt(5));
+            next = new Intake(type, rand.nextInt(5), i+1);
             if (sendToEmergency) {
                 hospital.addToEmergency(next);
             }else{

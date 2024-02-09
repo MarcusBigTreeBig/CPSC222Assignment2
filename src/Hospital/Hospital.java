@@ -7,22 +7,29 @@ public class Hospital {
     private DoctorStack generalDoctors;
 
     public Hospital (int numberOfEmergencyDoctors, int numberOfGeneralDoctors) {
+        Doctor nextDoctor;
         emergencyDoctors = new DoctorStack();
         for (int i = 0; i < numberOfEmergencyDoctors; i++) {
-            emergencyDoctors.push(new Doctor());
+            nextDoctor = new Doctor();
+            emergencyDoctors.push(nextDoctor);
+            nextDoctor.start();
         }
         generalDoctors = new DoctorStack();
         for (int i = 0; i < numberOfGeneralDoctors; i++) {
-            generalDoctors.push(new Doctor());
+            nextDoctor = new Doctor();
+            generalDoctors.push(nextDoctor);
+            nextDoctor.start();
         }
         emergencyNurse = new Nurse(new IntakeQueue(), this);
+        emergencyNurse.start();
         frontDeskNurse = new Nurse(new IntakeQueue(), this);
+        frontDeskNurse.start();
     }
 
     public synchronized void addToEmergency (Intake intake) {
         if (intake.getType() != IntakeType.Emergency) {
+            System.out.println(intake + "Sent to front desk\n");
             addToFrontDesk(intake);
-            System.out.println(intake + "Sent to front desk");
         }
         else {
             emergencyNurse.addToQueue(intake);
