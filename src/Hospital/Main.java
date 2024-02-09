@@ -9,7 +9,9 @@ public class Main {
         boolean sendToEmergency;
         IntakeType type = null;
         Intake next;
-        for (int i = 0; i < 25; i++) {
+        int numberOfIntakes = 25;
+        Intake[] intakes = new Intake[numberOfIntakes];
+        for (int i = 0; i < numberOfIntakes; i++) {
             sendToEmergency  = rand.nextBoolean();
             switch (rand.nextInt(3)) {
                 case 0:

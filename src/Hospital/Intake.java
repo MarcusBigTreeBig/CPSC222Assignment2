@@ -7,8 +7,8 @@ public class Intake {
     public Intake (IntakeType type, int severity, int intakeID) {
         this.type = type;
         this.severity = severity;
-        System.out.println("New Intake Created\n" + toString());
         this.intakeID = intakeID;
+        System.out.println("New Intake Created\n" + toString());
     }
     @Override
     public synchronized String toString () {
