@@ -1,4 +1,4 @@
-package ThreadNumbers;
+package threadNumbers_marcus_herbert;
 
 /**
  * Creates complex threads
@@ -13,3 +13,26 @@ public class ComplexThreadsTest {
         }
     }
 }
+
+/*
+Stopped at 17010
+ */
+
+/*
+Some output:
+
+1490
+1491
+1492
+1493
+1494
+1495
+1496
+1497
+1498
+1499
+1500
+1501
+1502
+1503
+ */

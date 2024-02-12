@@ -1,4 +1,4 @@
-package Hospital;
+package hospital_marcus_herbert;
 
 /**
  * Doctor for the hospital simulation

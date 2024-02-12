@@ -1,4 +1,4 @@
-package Semaphores;
+package semaphores_marcus_herbert;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -40,7 +40,7 @@ public class FileWritingThread extends Thread{
                 throw new RuntimeException(e);
             }
             try {
-                file.flush();
+                file.flush();//to ensure things are written to file properly
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

@@ -1,4 +1,4 @@
-package Hospital;
+package hospital_marcus_herbert;
 
 /**
  * An intake for the hospital simulation

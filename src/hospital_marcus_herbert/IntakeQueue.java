@@ -1,4 +1,4 @@
-package Hospital;
+package hospital_marcus_herbert;
 
 import java.util.Comparator;
 import java.util.concurrent.PriorityBlockingQueue;
@@ -18,7 +18,7 @@ public class IntakeQueue extends PriorityBlockingQueue<Intake> {
     public IntakeQueue () {
         super (25, new Comparator<Intake> () {
             @Override
-            public int compare(Intake o1, Intake o2) {
+            public int compare(Intake o1, Intake o2) {//comparator that compares intakes based on type, and severity as a tie breaker
                 if (o2.getType() == o1.getType()) {
                     return o2.getSeverity() - o1.getSeverity();
                 }

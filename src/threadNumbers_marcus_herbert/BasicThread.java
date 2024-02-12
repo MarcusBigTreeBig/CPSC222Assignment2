@@ -1,4 +1,4 @@
-package ThreadNumbers;
+package threadNumbers_marcus_herbert;
 
 /**
  * Thread that when ran, prints out the number of threads

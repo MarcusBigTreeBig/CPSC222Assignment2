@@ -1,4 +1,4 @@
-package ThreadNumbers;
+package threadNumbers_marcus_herbert;
 
 /**
  * Creates simple threads that only print how many threads have been created infinitely
@@ -11,3 +11,25 @@ public class BasicThreadsTest {
         }
     }
 }
+
+/*
+Stopped at 221816
+ */
+
+/*
+Some Output:
+19224
+19224
+19224
+19224
+19224
+19224
+19224
+19224
+19224
+19224
+19224
+19224
+19224
+19224
+ */

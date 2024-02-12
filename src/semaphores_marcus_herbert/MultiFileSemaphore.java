@@ -1,4 +1,4 @@
-package Semaphores;
+package semaphores_marcus_herbert;
 
 import java.io.FileWriter;
 
@@ -9,7 +9,6 @@ import java.io.FileWriter;
  */
 
 public class MultiFileSemaphore {
-    private ThreadQueue q;
     private FileStack files;
 
     /**
@@ -18,7 +17,6 @@ public class MultiFileSemaphore {
      * Starts with no threads waiting to access a file
      */
     public MultiFileSemaphore () {
-        q = new ThreadQueue();
         files = new FileStack();
     }
 
@@ -46,54 +44,6 @@ public class MultiFileSemaphore {
             }
         }
         return files.pop();
-    }
-
-    /**
-     * Implements the queue where threads can wait to access the files
-     */
-    private class ThreadQueue {
-
-        private ThreadNode front;
-        private ThreadNode rear;
-
-        /**
-         *
-         * @param t adds this thread to the queue
-         */
-        public void enqueue (Thread t) {
-            ThreadNode n = new ThreadNode();
-            if (rear != null) {
-                rear.previous = n;
-            }
-            n.next = rear;
-            rear = n;
-            if (front == null) {
-                front = n;
-            }
-        }
-
-        /**
-         *
-         * @return a thread taken from the queue
-         */
-        public Thread dequeue () {
-            if (front == null) {
-                return null;
-            }
-            ThreadNode n = front;
-            front = front.previous;
-            front.next = null;
-            return n.thread;
-        }
-
-        /**
-         * Stores threads in a node that can be used for the queue
-         */
-        private class ThreadNode {
-            private ThreadNode next;
-            private ThreadNode previous;
-            private Thread thread;
-        }
     }
 
     /**

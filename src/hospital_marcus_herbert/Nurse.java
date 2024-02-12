@@ -1,4 +1,4 @@
-package Hospital;
+package hospital_marcus_herbert;
 
 /**
  * Nurse for the hospital simulation
@@ -47,7 +47,7 @@ public class Nurse extends Thread{
                 }
                 doctor.addToQueue(next);
                 System.out.println(next + "Processed by nurse\n");
-                if (doctorIsEmergency) {
+                if (doctorIsEmergency) {//return back to correct stack
                     hospital.giveEmergencyDoctor(doctor);
                 } else {
                     hospital.giveGeneralDoctor(doctor);

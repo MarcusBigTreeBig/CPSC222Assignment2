@@ -1,4 +1,4 @@
-package ThreadNumbers;
+package threadNumbers_marcus_herbert;
 
 import java.util.Random;
 
